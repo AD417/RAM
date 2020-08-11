@@ -1,0 +1,182 @@
+@import url("https://fonts.googleapis.com/css2?family=Antic+Slab&display=swap");
+
+* {
+	font-family: "Antic Slab", serif;
+	overflow-x: auto;
+	overflow-y: visible !important;
+}
+
+body {
+	background-color: lightgrey;
+	margin: 0;
+}
+
+span {
+	display: inline-block;
+}
+
+td {
+	width: 295px;
+	height: 80px;
+}
+
+:focus {
+	outline: 0;
+}
+
+::-webkit-scrollbar {
+	width: 5px;
+}
+
+#topstuffs {
+	margin: 8;
+}
+
+#availableRAM {
+	text-align: center;
+}
+
+#tabs {
+	position: relative;
+	width: 100%;
+	height: calc(100vh - 128px);
+	pointer-events: none;
+}
+
+#chromeTabs {
+	width: 100%;
+	text-align: center;
+	font-size: x-large;
+}
+
+#screen1 {
+	width: 100vw;
+	height: 100vh;
+	background-color: white;
+	display: none;
+}
+
+#crashimg {
+	margin-left: calc(50vw - 300px);
+	margin-top: calc(50vh - 170px);
+}
+
+#reloadbutton {
+	width: 80px;
+	height: 35px;
+	background-color: rgb(60, 104, 170);
+	border: none;
+	color: white;
+	border-radius: 5px;
+	padding: 5px;
+	margin-left: 100px;
+}
+
+.producerName {
+	font-size: x-large;
+}
+
+.buyProducer {
+	font-size: larger;
+	width: 100%;
+}
+
+.tab {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	pointer-events: none;
+}
+
+.tab_button {
+	height: 35px;
+	width: 200px;
+	background: white;
+	border: solid 0px;
+	border-radius: 10px 10px 0 0;
+	pointer-events: auto;
+	font-size: 20px;
+	text-align: left;
+}
+
+.tab_button::before {
+	/* background-image: url("/assets/production.png");
+	background-size: 16px 16px;
+	background-position-x: 5px;
+	background-repeat: no-repeat; */
+	width: 10px;
+	height: 16px;
+	display: inline-block;
+	content: "";
+}
+
+.tab_button:not(.active)::after {
+	content: "|";
+	float: right;
+}
+
+.tab_body {
+	height: calc(100% - 35px);
+	background: white;
+	bottom: 0;
+	pointer-events: auto;
+}
+
+.whitething {
+	height: 35px;
+	width: 10px;
+	background-color: white;
+	position: absolute;
+}
+
+.greything,
+.greything2 {
+	height: 35px;
+	width: 10px;
+	background-color: lightgrey;
+	position: absolute;
+	border: solid 0px;
+}
+
+.greything {
+	border-radius: 0 0 10px 0;
+}
+
+.greything2 {
+	border-radius: 0 0 0 10px;
+}
+
+.last {
+	min-width: calc(100vw - 600px);
+	height: 85px;
+	overflow-x: auto;
+	display: inline-table;
+}
+
+.upgrade {
+	height: 60px;
+	min-height: 60px;
+	width: 60px;
+	min-width: 60px;
+	font-size: 50px;
+	text-align: center;
+	line-height: 60px;
+	margin: 5px;
+	background-color: white;
+	overflow: hidden;
+	border-radius: 35px;
+	transition: background-color 0.2s;
+	cursor: pointer;
+}
+
+.upgrade:hover {
+	background-color: silver;
+}
+
+.bought {
+	background-color: silver;
+}
+
+.tippy-arrow {
+	display: none;
+}

@@ -1,0 +1,79 @@
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Regularly Absent Memory</title>
+		<link rel="stylesheet" href="css/style.css" />
+	</head>
+	<body>
+		<div id="app">
+			<div id="screen1" v-bind:style="{display: state == 1 ? 'block' : 'none'}">
+				<img id="crashimg" src="assets/crash.png" alt="You crashed chrome" />
+				<button id="reloadbutton" @click="state = 0">Reload</button>
+			</div>
+			<div id="screen0" v-if="state == 0">
+				<div id="topstuffs">
+					<span id="topbar">RAM: Regularly Absent Memory v{{ version }} by Reinhardt</span>
+					<hr />
+					<div id="availableRAM">
+						You have<br />{{ f(availableRAM.round(), 'bytes') }}b<br />of available RAM
+					</div>
+					<hr />
+				</div>
+
+				<div id="tabs">
+					<gametab v-bind:id="0" v-bind:tab="tabs[0]"
+						><br />
+						<span id="chromeTabs">You have {{ f(chromeTabs.floor()) }} chrome tabs open</span>
+						<producer
+							v-for="(item, index) in producers"
+							v-bind:key="index"
+							v-bind:id="index"
+							v-bind:name="configData.producer_names[index]"
+						></producer>
+					</gametab>
+					<gametab v-bind:id="1" v-bind:tab="tabs[1]">
+						Current Open Tabs: {{ f(chromeTabs.floor()) }}<br />
+						Total Opened Tabs: {{ f(totalTabs.floor()) }}<br />
+						RAM per Chrome Tab: {{ f(rpt.floor(), 'bytes') }}b<br />
+						Total RAM: {{ f(totalRAM.round(), 'bytes') }}b<br />
+						Available RAM: {{ f(availableRAM.round(), 'bytes') }}b<br />
+					</gametab>
+					<gametab v-bind:id="2" v-bind:tab="tabs[2]">
+						<div id="settings">
+							<h3>&nbsp;Saving</h3>
+							<button @click="save">Save</button>
+							<button @click="load">Load</button>
+							<button @click="wipe">Wipe</button>
+							<hr />
+						</div>
+					</gametab>
+					<gametab v-bind:id="3" v-bind:tab="tabs[3]" v-if="prestiged"></gametab>
+				</div>
+			</div>
+		</div>
+		<!-- Vue.js -->
+		<script src="https://cdn.jsdelivr.net/npm/vue"></script>
+
+		<!-- Libraries -->
+		<script src="js/break_infinity.min.js"></script>
+		<script src="js/format.js"></script>
+		<script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+		<script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
+
+		<!-- Components -->
+		<script src="js/upgrade.js"></script>
+		<script src="js/producer.js"></script>
+		<script src="js/tab.js"></script>
+
+		<!-- Data -->
+		<script src="js/config.js"></script>
+
+		<!-- Main -->
+		<script src="js/main.js"></script>
+
+		<script>
+			vm.init();
+		</script>
+	</body>
+</html>
