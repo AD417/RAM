@@ -20,6 +20,14 @@ td {
 	height: 80px;
 }
 
+a {
+	color: black;
+}
+
+input {
+	height: 20px;
+}
+
 :focus {
 	outline: 0;
 }
@@ -179,4 +187,27 @@ td {
 
 .tippy-arrow {
 	display: none;
+}
+
+.center {
+	text-align: center;
+	width: 100%;
+}
+
+.flexbox {
+	display: flex;
+	width: 100%;
+}
+
+.flexbox > * {
+	flex-basis: 1000px;
+	text-align: center;
+}
+
+.memUpg {
+	font-size: 20px;
+}
+
+.autoclicker {
+	border: 1px solid black;
 }

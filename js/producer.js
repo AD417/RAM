@@ -18,7 +18,8 @@ Vue.component("producer", {
 			return D(1.25)
 				.pow(this.$parent.$parent.producers[this.id])
 				.mul(config_data.producer_base_costs[this.id])
-				.floor();
+				.mul(this.$parent.$parent.priceScaling)
+				.ceil();
 		},
 		plural: function () {
 			return !this.cost().eq(1);

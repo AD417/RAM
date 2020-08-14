@@ -29,10 +29,7 @@ Vue.component("upgrade", {
 			}
 		},
 		bought: function () {
-			return this.$parent.$parent.$parent.upgrades[this.pr].gt(this.id);
-		},
-		unlocked: function () {
-			return this.$parent.$parent.$parent.upgrades[this.pr].gte(this.id);
+			return this.$parent.$parent.$parent.upgrades[this.pr].gt(this.id - 1);
 		},
 		f: f,
 	},

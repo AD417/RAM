@@ -2,18 +2,23 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta name="description" content="A game about using up all your RAM" />
 		<title>Regularly Absent Memory</title>
 		<link rel="stylesheet" href="css/style.css" />
 	</head>
-	<body>
+	<body onload="vm.loaded = true">
 		<div id="app">
 			<div id="screen1" v-bind:style="{display: state == 1 ? 'block' : 'none'}">
 				<img id="crashimg" src="assets/crash.png" alt="You crashed chrome" />
 				<button id="reloadbutton" @click="state = 0">Reload</button>
 			</div>
-			<div id="screen0" v-if="state == 0">
+			<div id="screen0" v-if="state == 0 && loaded">
 				<div id="topstuffs">
-					<span id="topbar">RAM: Regularly Absent Memory v{{ version }} by Reinhardt</span>
+					<span id="topbar"
+						><a href="html/about.html"
+							>RAM: Regularly Absent Memory v{{ version }} by Reinhardt</a
+						></span
+					>
 					<hr />
 					<div id="availableRAM">
 						You have<br />{{ f(availableRAM.round(), 'bytes') }}b<br />of available RAM
@@ -35,9 +40,11 @@
 					<gametab v-bind:id="1" v-bind:tab="tabs[1]">
 						Current Open Tabs: {{ f(chromeTabs.floor()) }}<br />
 						Total Opened Tabs: {{ f(totalTabs.floor()) }}<br />
+						Tabs per Second: {{ f(tps.mul(20).floor()) }}<br />
 						RAM per Chrome Tab: {{ f(rpt.floor(), 'bytes') }}b<br />
 						Total RAM: {{ f(totalRAM.round(), 'bytes') }}b<br />
 						Available RAM: {{ f(availableRAM.round(), 'bytes') }}b<br />
+						<span v-if="prestiges > 0">Prestiges: {{ prestiges }}</span><br />
 					</gametab>
 					<gametab v-bind:id="2" v-bind:tab="tabs[2]">
 						<div id="settings">
@@ -48,7 +55,36 @@
 							<hr />
 						</div>
 					</gametab>
-					<gametab v-bind:id="3" v-bind:tab="tabs[3]" v-if="prestiged"></gametab>
+					<gametab v-bind:id="3" v-bind:tab="tabs[3]" v-if="prestiged"
+						><br />
+						<span class="center"
+							>You have {{ memoryLeaks }} memory leak{{ memoryLeaks.eq(1) ? '' : 's' }}</span
+						>
+						<hr />
+						<flexbox>
+							<button class="memUpg" @click="buyPrestigeUpg(0)">
+								Increase the RAM per tab - 1 memory leak
+							</button>
+							<button class="memUpg" @click="buyPrestigeUpg(1)">
+								Decrease total RAM - 1 memory leak
+							</button>
+							<button class="memUpg" @click="buyPrestigeUpg(2)">
+								Decrease prices - 1 memory leak
+							</button>
+						</flexbox>
+
+						<div v-if="prestiges > 5">
+							<hr />
+							<flexbox
+								><autoclicker
+									v-for="(i, index) in producers"
+									v-bind:key="index"
+									v-bind:id="index"
+									v-bind:name="configData.producer_names[index]"
+								></autoclicker
+							></flexbox>
+						</div>
+					</gametab>
 				</div>
 			</div>
 		</div>
@@ -64,6 +100,7 @@
 		<!-- Components -->
 		<script src="js/upgrade.js"></script>
 		<script src="js/producer.js"></script>
+		<script src="js/autoclicker.js"></script>
 		<script src="js/tab.js"></script>
 
 		<!-- Data -->
