@@ -3,7 +3,7 @@ const D = n => new Decimal(n);
 let vm = new Vue({
 	el: "#app",
 	data: {
-		version: "0.0.0",
+		version: "0.0.1",
 		configData: config_data,
 		initData: {
 			chromeTabs: D(10),
@@ -27,7 +27,7 @@ let vm = new Vue({
 		autoclickerintv: ["10", "10", "10", "10"],
 		autoclickers: [0, 0, 0, 0],
 		rpt: D(1000),
-		tabs: [false, false, false, true],
+		tabs: [true, false, false, false],
 		state: 0,
 		prestiged: false,
 		prestiges: 0,
